@@ -2,5 +2,5 @@ streamlit
 selenium
 pandas
 openpyxl
-seleniumbase == 1.5.8
+seleniumbase==1.5.8
 webdriver-manager
