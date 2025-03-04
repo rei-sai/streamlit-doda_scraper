@@ -1,4 +1,7 @@
 from selenium import webdriver # 各種必要機能のダウンロード
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+import chromedriver_autoinstaller
 from selenium.webdriver.common.by import By
 import logging # ログ機能
 import time # 待機機能
@@ -33,6 +36,9 @@ def load_config():
     st.text_input("出力ファイル名", "doda_job_data",key="output_file_prefix")
 
 def initialize_driver(): # WebDriverを初期化する
+
+    # 最新の chromedriver を自動インストール
+    chromedriver_autoinstaller.install()  
 
     options = Options()
     options.add_argument("--headless")  # ヘッドレスモード
