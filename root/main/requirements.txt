@@ -3,3 +3,4 @@ selenium
 pandas
 openpyxl
 chromedriver-autoinstaller
+webdriver-manager
