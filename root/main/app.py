@@ -38,6 +38,8 @@ def load_config():
 
 def initialize_driver(): # WebDriverを初期化する
 
+    options = Options()
+
     # option設定を追加（設定する理由はメモリの削減）
     options.add_argument("--headless")
     options.add_argument('--disable-gpu')
