@@ -1,5 +1,5 @@
 from selenium import webdriver # 各種必要機能のダウンロード
-from selenium.webdriver.chrome.service import Service as fs
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from webdriver_manager.core.os_manager import ChromeType
 from webdriver_manager.chrome import ChromeDriverManager
@@ -46,14 +46,12 @@ def initialize_driver(): # WebDriverを初期化する
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
 
-    # webdriver_managerによりドライバーをインストール
-    # chromiumを使用したいのでchrome_type引数でchromiumを指定しておく
-    CHROMEDRIVER = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
-    service = fs.Service(CHROMEDRIVER)
+    # ChromeDriverManager().install() で返される Service クラスのインスタンスを直接使用
+    service = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
     driver = webdriver.Chrome(
-                              options=options,
-                              service=service
-                             )
+        options=options,
+        service=service
+    )
     return driver
 
 def login_to_doda(email,password, driver): # ログイン処理
