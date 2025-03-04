@@ -1,8 +1,8 @@
 from selenium import webdriver # 各種必要機能のダウンロード
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.service import Service as fs
 from selenium.webdriver.chrome.options import Options
-from seleniumbase import Driver
-import shutil
+from webdriver_manager.core.os_manager import ChromeType
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import logging # ログ機能
 import time # 待機機能
@@ -38,15 +38,20 @@ def load_config():
 
 def initialize_driver(): # WebDriverを初期化する
 
-    options = Options()
+    # option設定を追加（設定する理由はメモリの削減）
     options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
-    options.add_argument("--disable-blink-features=AutomationControlled")
-    options.add_argument("--disable-gpu")
-    driver = Driver(uc=True, browser_options=options)  # SeleniumBase の Driver を使用
-    driver.execute_cdp_cmd("Network.setUserAgentOverride", {"userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"})
-    driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+    options.add_argument('--disable-gpu')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+
+    # webdriver_managerによりドライバーをインストール
+　  # chromiumを使用したいのでchrome_type引数でchromiumを指定しておく
+    CHROMEDRIVER = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+    service = fs.Service(CHROMEDRIVER)
+    driver = webdriver.Chrome(
+                              options=options,
+                              service=service
+                             )
     return driver
 
 def login_to_doda(email,password, driver): # ログイン処理
