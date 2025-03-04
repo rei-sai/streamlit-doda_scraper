@@ -2,6 +2,7 @@ from selenium import webdriver # 各種必要機能のダウンロード
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 import chromedriver_autoinstaller
+import shutil
 from selenium.webdriver.common.by import By
 import logging # ログ機能
 import time # 待機機能
