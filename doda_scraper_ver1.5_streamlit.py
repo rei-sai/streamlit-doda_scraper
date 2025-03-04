@@ -33,6 +33,9 @@ def load_config():
     st.text_input("出力ファイル名", "doda_job_data",key="output_file_prefix")
 
 def initialize_driver(): # WebDriverを初期化する
+
+    chromedriver_autoinstaller.install() 
+    
     options = Options()
     options.add_argument("--headless")  # ヘッドレスモード
     options.add_argument("--no-sandbox")  # 必須オプション（特権なしで動かす）
