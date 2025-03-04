@@ -2,5 +2,5 @@ streamlit
 selenium
 pandas
 openpyxl
-webdriver-manager==3.8.5
+webdriver-manager==4.0.2
 undetected-chromedriver
