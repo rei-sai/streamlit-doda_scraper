@@ -34,6 +34,9 @@ def load_config():
 
 def initialize_driver(): # WebDriverを初期化する
     options = Options()
+    options.add_argument("--headless")  # ヘッドレスモード
+    options.add_argument("--no-sandbox")  # 必須オプション（特権なしで動かす）
+    options.add_argument("--disable-dev-shm-usage")  # 共有メモリの問題回避
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_argument("--disable-gpu")
     driver = webdriver.Chrome(options=options)
