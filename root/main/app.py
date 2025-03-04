@@ -1,7 +1,7 @@
 from selenium import webdriver # 各種必要機能のダウンロード
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
-import chromedriver_autoinstaller
+from seleniumbase import Driver
 import shutil
 from selenium.webdriver.common.by import By
 import logging # ログ機能
@@ -38,16 +38,14 @@ def load_config():
 
 def initialize_driver(): # WebDriverを初期化する
 
-    # 最新の chromedriver を自動インストール
-    chromedriver_autoinstaller.install()  
-
     options = Options()
-    options.add_argument("--headless")  # ヘッドレスモード
-    options.add_argument("--no-sandbox")  # 必須オプション（特権なしで動かす）
-    options.add_argument("--disable-dev-shm-usage")  # 共有メモリの問題回避
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_argument("--disable-gpu")
-    driver = webdriver.Chrome(options=options)
+    driver = Driver(uc=True, browser_options=options)  # SeleniumBase の Driver を使用
+    driver.execute_cdp_cmd("Network.setUserAgentOverride", {"userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"})
     driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
     return driver
 
