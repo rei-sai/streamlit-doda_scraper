@@ -1,7 +1,7 @@
 from selenium import webdriver # 各種必要機能のダウンロード
-from selenium.webdriver.chrome.service import Service as fs
-from selenium.webdriver.chrome.options import Options
-from webdriver_manager.chrome import ChromeType
+from selenium.webdriver.chrome import service as fs
+from selenium.webdriver import ChromeOptions
+from webdriver_manager.core.os_manager import ChromeType
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 import logging # ログ機能
