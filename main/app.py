@@ -60,6 +60,7 @@ def login_to_doda(email,password, driver): # ログイン処理
     try:
         display_log("スクレイピング処理を開始します")
         driver.get('https://doda.jp/')
+        time.sleep(5)
         driver.find_element(By.XPATH, '//*[@id="__next"]/div[1]/div/header/div/div/div[2]/div/a[4]/button').click()
 
         WebDriverWait(driver, 5).until(
