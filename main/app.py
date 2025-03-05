@@ -326,7 +326,7 @@ def main(config): # 上記の処理をまとめて行うメイン関数
 
     finally:
         driver.quit()
-        display_log("WebDriverを終了しました")
+        display_log(f"WebDriverを終了しました{e}")
 
 # st.session_state の初期化
 if "start_config" not in st.session_state:
