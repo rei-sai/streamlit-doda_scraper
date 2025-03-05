@@ -46,12 +46,14 @@ def initialize_driver(): # WebDriverを初期化する
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
 
-    # ChromeDriverManager().install() で返される Service クラスのインスタンスを直接使用
-    service = ChromeDriverManager().install()
+    # webdriver_managerによりドライバーをインストール
+　  # chromiumを使用したいのでchrome_type引数でchromiumを指定しておく
+    CHROMEDRIVER = ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
+    service = fs.Service(CHROMEDRIVER)
     driver = webdriver.Chrome(
-        options=options,
-        service=service
-    )
+                              options=options,
+                              service=service
+                             )
     return driver
 
 def login_to_doda(email,password, driver): # ログイン処理
