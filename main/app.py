@@ -56,7 +56,7 @@ def initialize_driver(): # WebDriverを初期化する
                              )
     return driver
 
-def login_to_doda(config["email"], config["password"], driver): # ログイン処理
+def login_to_doda(config["email"],config["password"],driver): # ログイン処理
     try:
         display_log("スクレイピング処理を開始します")
         driver.get('https://doda.jp/')
@@ -76,7 +76,7 @@ def login_to_doda(config["email"], config["password"], driver): # ログイン�
         display_log(f"ログイン処理に失敗しました{e}")
         exit()
 
-def navigate_to_search_conditions(config["password"], config["search_title"], driver): # 詳細検索を行う
+def navigate_to_search_conditions(config["password"],config["search_title"],driver): # 詳細検索を行う
     try:
         display_log("詳細検索のための条件を取得します")
         driver.find_element(By.XPATH, '//*[@id="__next"]/div[2]/main/ul/li[3]/a').click()
@@ -101,7 +101,7 @@ def navigate_to_search_conditions(config["password"], config["search_title"], dr
             display_log(f"パスワード再入力処理でも例外発生: {e}")
             exit()
 
-def navigate_to_page(config["first_page"], driver): # 取得開始するページへ飛ぶ
+def navigate_to_page(config["first_page"],driver): # 取得開始するページへ飛ぶ
     try:
         base_url = driver.current_url # 基準となる最初のURLを取得
         target_url = f"{base_url}&page={first_page}"  # 飛びたいページのリンクを作成
@@ -304,9 +304,9 @@ def main(config): # 上記の処理をまとめて行うメイン関数
     driver = initialize_driver()
         st.write("✅ WebDriver の初期化成功")
     try:
-        login_to_doda(config["email"], config["password"], driver)
-        navigate_to_search_conditions(config["password"], config["search_title"], driver)
-        search_result = navigate_to_page(config["first_page"], driver)
+        login_to_doda(config["email"],config["password"],driver)
+        navigate_to_search_conditions(config["password"],config["search_title"],driver)
+        search_result = navigate_to_page(config["first_page"],driver)
         data = []
         current_page = config["first_page"]
         last_page = config["last_page"]
