@@ -60,7 +60,6 @@ def login_to_doda(email,password, driver): # ログイン処理
     try:
         display_log("スクレイピング処理を開始します")
         driver.get('https://doda.jp/')
-        time.sleep(5)
         driver.find_element(By.XPATH, '//*[@id="__next"]/div[1]/div/header/div/div/div[2]/div/a[4]/button').click()
 
         WebDriverWait(driver, 5).until(
@@ -358,6 +357,7 @@ if st.session_state.start_config and not st.session_state.start_scraping:
         }
 
 if st.session_state.start_scraping and st.session_state.config:
+    st.write("デバッグ: configの中身", st.session_state.config)  # ここで確認
     main(st.session_state.config) # st.session_state.configをmain関数に渡す
     st.session_state.start_scraping = False
     st.session_state.start_config = False
