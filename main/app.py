@@ -1,5 +1,3 @@
-0306 10:06時点のコード
-
 from selenium import webdriver # 各種必要機能のダウンロード
 from selenium.webdriver.chrome import service as fs
 from selenium.webdriver import ChromeOptions
