@@ -324,7 +324,7 @@ def main(config): # 上記の処理をまとめて行うメイン関数
 
         save_to_excel(data)
 
-    finally:
+    except Exception as e:
         driver.quit()
         display_log(f"WebDriverを終了しました{e}")
 
