@@ -60,7 +60,7 @@ def login_to_doda(email,password, driver): # ログイン処理
     try:
         display_log("スクレイピング処理を開始します")
         driver.get('https://doda.jp/')
-        driver.find_element(By.CSS_SELECTOR, "button.labeledIcon__wrapper div.labeledIcon__label:contains('ログイン')").click()
+        driver.find_element(By.XPATH, '//*[@id="__next"]/div[1]/div/header/div/div/div[2]/div/a[4]/button').click()
 
         WebDriverWait(driver, 5).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, 'input#mailAddress'))).send_keys(email)
