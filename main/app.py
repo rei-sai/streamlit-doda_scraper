@@ -300,7 +300,7 @@ def format_excel(excel_buffer):
 
 
 def main(config): # 上記の処理をまとめて行うメイン関数
-
+    st.write("【デバッグ】main() に渡された config:", config)  # ここで確認
     driver = initialize_driver()
 
     try:
@@ -357,7 +357,8 @@ if st.session_state.start_config and not st.session_state.start_scraping:
         }
 
 if st.session_state.start_scraping and st.session_state.config:
-    st.write("デバッグ: configの中身", st.session_state.config)  # ここで確認
+    config_copy = dict(st.session_state.config)  # 一度 dict() にコピー
+    st.write("デバッグ: コピーした config:", config_copy)
     main(st.session_state.config) # st.session_state.configをmain関数に渡す
     st.session_state.start_scraping = False
     st.session_state.start_config = False
